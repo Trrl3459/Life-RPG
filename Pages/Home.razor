@@ -1,0 +1,68 @@
+﻿@page "/"
+@using MudBlazor
+
+<PageTitle>Home</PageTitle>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 text-center">
+
+            <MudAlert Severity="Severity.Success" Icon="@Icons.Material.Filled.CheckCircle" Dense="true" Class="mb-4">
+                Congratulations, LifeRPG is successfully running!
+            </MudAlert>
+
+            <MudText Typo="Typo.h3" GutterBottom="true">Welcome to the Application</MudText>
+            <MudText Class="mb-4">Welcome to the application.</MudText>
+
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/login">Login</MudButton>
+
+            <MudText Typo="Typo.h4" Class="mt-8 mb-4">Let's improve your application!</MudText>
+            <MudText Class="mb-4">Here are some links to help you get started:</MudText>
+
+        </div>
+    </div>
+
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudIcon Icon="@Icons.Material.Filled.Description" />
+                        <MudText Typo="Typo.h6" Class="ml-2">Learn the Blazor Framework</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>Explore the comprehensive documentation to learn how to build a modern web application.</MudText>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudIcon Icon="@Icons.Material.Filled.Storage" />
+                        <MudText Typo="Typo.h6" Class="ml-2">Samples</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>See the example projects built with the Blazor Framework.</MudText>
+                    <MudLink Href="/samples">All samples</MudLink>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="4">
+            <MudCard>
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudIcon Icon="@Icons.Material.Filled.Group" />
+                        <MudText Typo="Typo.h6" Class="ml-2">ABP Community</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudText>Get involved with a vibrant community and become a contributor.</MudText>
+                    <MudLink Href="/community">Community</MudLink>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</div>
