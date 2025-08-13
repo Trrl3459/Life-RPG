@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "LifeRPG",
   "resources": {
-    "hash": "sha256-VLcoH2YsJUJOpddrKUuVcBFVhhVEnP1hdw3LCn9Le7A=",
+    "hash": "sha256-PPiP/HQ0v43/qV7+xVICg3NuX3r0w32CJqGUMIF3lDo=",
     "fingerprinting": {
       "Microsoft.AspNetCore.Authorization.bvu82j4ad3.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.ptfrz3fits.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -204,8 +204,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "LifeRPG.ezu7hkmt1s.wasm": "LifeRPG.wasm",
-      "LifeRPG.3326f1gqte.pdb": "LifeRPG.pdb"
+      "LifeRPG.dp9zrdfsc6.wasm": "LifeRPG.wasm",
+      "LifeRPG.dkhgymm4db.pdb": "LifeRPG.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.st0ovrfdhi.js": "sha256-MBW/zayfv+YU6mhH7y4b8NNU4D1EYd7nf9gYrFshnnY="
@@ -418,10 +418,10 @@
       "WindowsBase.pg3o6xzigg.wasm": "sha256-dz62CHynC+zqTkbMOf3vm7YAhiRA8/pIoAwuqHfBL5M=",
       "mscorlib.jl2pswegra.wasm": "sha256-mSoCIDTdCQKTipW8VmFCypW/4AopZauaYRa8LoZdHvY=",
       "netstandard.uriri6ambh.wasm": "sha256-yuH/cvPd6r8N9nfPWihyckFD7hPFP+VQtQQxEqi7HIQ=",
-      "LifeRPG.ezu7hkmt1s.wasm": "sha256-ZkZIYeCLhyC7vEfPvubG1ATNxUbINwMwGPbi0Ivm12c="
+      "LifeRPG.dp9zrdfsc6.wasm": "sha256-4Vp87w+2OoZ9ylrpflzg6gRG2ZzvwIqI60Lf7dDQoH4="
     },
     "pdb": {
-      "LifeRPG.3326f1gqte.pdb": "sha256-8RxY3yDhhz3PrU5eicjCVCVPrenatDQ6ViclYtgntho="
+      "LifeRPG.dkhgymm4db.pdb": "sha256-E2kFK94e/cvdEsMv3F/egOYENqlrqkt40IO3NlHe1LU="
     }
   },
   "cacheBootResources": true,

@@ -1,0 +1,11 @@
+@page "/character"
+@inject CharacterService CharacterService
+
+<MudCard>
+    <MudCardContent>
+        <MudTextField @bind-Value="CharacterService.Player.Name" Label="Character Name" />
+        <MudText>Level: @CharacterService.Player.Level</MudText>
+        <MudText>XP: @CharacterService.Player.CurrentXP / @CharacterService.Player.XPToNextLevel</MudText>
+        <MudText>Gold: @CharacterService.Player.Gold</MudText>
+    </MudCardContent>
+</MudCard>

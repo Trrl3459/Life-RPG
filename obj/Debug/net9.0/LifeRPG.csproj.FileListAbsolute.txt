@@ -1091,10 +1091,10 @@ C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\LifeRPG.pdb
 C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\ref\LifeRPG.dll
 C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\1ckv07jo0c-7eyinyaarc.gz
 C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\LifeRPG.sourcelink.json
-C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.ezu7hkmt1s.wasm
-C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.3326f1gqte.pdb
-C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.ezu7hkmt1s.wasm.gz
-C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.3326f1gqte.pdb.gz
-C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\1yghg3dpwo-ezu7hkmt1s.gz
-C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\wyejv4cpzm-3326f1gqte.gz
-C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\qmo2fa84hu-36hie48oog.gz
+C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.dp9zrdfsc6.wasm
+C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.dkhgymm4db.pdb
+C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.dp9zrdfsc6.wasm.gz
+C:\Users\hight\Coding\LifeRPG\bin\Debug\net9.0\wwwroot\_framework\LifeRPG.dkhgymm4db.pdb.gz
+C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\1yghg3dpwo-dp9zrdfsc6.gz
+C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\wyejv4cpzm-dkhgymm4db.gz
+C:\Users\hight\Coding\LifeRPG\obj\Debug\net9.0\compressed\qmo2fa84hu-jqm1lhueph.gz
