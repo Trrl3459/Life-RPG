@@ -14,4 +14,13 @@ builder.Services.AddMudServices();
 
 builder.Services.AddSingleton<CharacterService>();
 
+builder.Services.AddMudServices(opts =>
+{
+    opts.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomEnd;
+    opts.SnackbarConfiguration.PreventDuplicates = true;
+    opts.SnackbarConfiguration.VisibleStateDuration = 2500;
+    opts.SnackbarConfiguration.ShowCloseIcon = true;
+});
+
+
 await builder.Build().RunAsync();
