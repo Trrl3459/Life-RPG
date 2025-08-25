@@ -47,13 +47,6 @@ public static class RpgTheme
             DefaultBorderRadius = "12px"
         },
 
-        Typography = new Typography
-        {
-            Default = new Default
-            {
-                FontFamily = new[] { "Roboto", "Helvetica", "Arial", "sans-serif" }
-            },
-            H3 = new H3 { FontWeight = 600 }
-        }
+        
     };
 }

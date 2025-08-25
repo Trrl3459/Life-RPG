@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CWIRdp1+K9w=",
+  "dgSpecHash": "DEEvxu0eg28=",
   "success": true,
   "projectFilePath": "C:\\Users\\hight\\Coding\\LifeRPG\\LifeRPG.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hight\\.nuget\\packages\\blazored.localstorage\\4.5.0\\blazored.localstorage.4.5.0.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.7\\microsoft.aspnetcore.authorization.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.7\\microsoft.aspnetcore.components.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\9.0.7\\microsoft.aspnetcore.components.analyzers.9.0.7.nupkg.sha512",

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using LifeRPG;
 using MudBlazor;
 using MudBlazor.Services;
+using Blazored.LocalStorage;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -13,6 +14,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddMudServices();
 
 builder.Services.AddSingleton<CharacterService>();
+
+builder.Services.AddBlazoredLocalStorage();
 
 builder.Services.AddMudServices(opts =>
 {
