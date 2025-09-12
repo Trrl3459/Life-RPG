@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CWIRdp1+K9w=",
+  "dgSpecHash": "BdarO5bi+xk=",
   "success": true,
   "projectFilePath": "C:\\Users\\hight\\Coding\\LifeRPG\\LifeRPG.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hight\\.nuget\\packages\\blazored.localstorage\\4.5.0\\blazored.localstorage.4.5.0.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.7\\microsoft.aspnetcore.authorization.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.7\\microsoft.aspnetcore.components.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\9.0.7\\microsoft.aspnetcore.components.analyzers.9.0.7.nupkg.sha512",
@@ -31,9 +32,7 @@
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.jsinterop\\9.0.7\\microsoft.jsinterop.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.jsinterop.webassembly\\9.0.7\\microsoft.jsinterop.webassembly.9.0.7.nupkg.sha512",
     "C:\\Users\\hight\\.nuget\\packages\\microsoft.net.illink.tasks\\9.0.7\\microsoft.net.illink.tasks.9.0.7.nupkg.sha512",
-    "C:\\Users\\hight\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\9.0.7\\microsoft.net.sdk.webassembly.pack.9.0.7.nupkg.sha512",
-    "C:\\Users\\hight\\.nuget\\packages\\mudblazor\\8.10.0\\mudblazor.8.10.0.nupkg.sha512",
-    "C:\\Users\\hight\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\9.0.7\\microsoft.netcore.app.runtime.mono.browser-wasm.9.0.7.nupkg.sha512"
+    "C:\\Users\\hight\\.nuget\\packages\\mudblazor\\8.10.0\\mudblazor.8.10.0.nupkg.sha512"
   ],
   "logs": []
 }

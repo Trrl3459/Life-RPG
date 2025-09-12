@@ -1,5 +1,9 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
+@using LifeRpg.Theme
+@inject MudThemeProvider MudThemeProvider
+
+<MudThemeProvider Theme="RpgTheme.Instance" />
 
 <MudLayout>
     <MudAppBar Elevation="1">
@@ -11,6 +15,10 @@
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2" Class="d-flex justify-center align-center">
         <MudNavMenu>
             <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
+            <MudNavLink Href="/dashboard" IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.Analytics">Dashboard</MudNavLink>
+            <MudNavLink Href="/quests" IconColor="Color.Error" Icon="@Icons.Material.Filled.AreaChart">Quests</MudNavLink>
+            <MudNavLink Href="/character" Icon="@Icons.Material.Filled.AccessibilityNew">Character</MudNavLink>
+            <MudNavLink Href="/rewards" IconColor="Color.Warning" Icon="@Icons.Material.Filled.AutoAwesome">Rewards</MudNavLink>
         </MudNavMenu>
     </MudDrawer>
     <MudMainContent>

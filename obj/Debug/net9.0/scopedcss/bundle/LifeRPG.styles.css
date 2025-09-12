@@ -1,4 +1,4 @@
-/* /Layout/MainLayout.razor.rz.scp.css */
+/* _content/LifeRPG/Layout/MainLayout.razor.rz.scp.css */
 .page[b-5xzgq4paib] {
     position: relative;
     display: flex;
@@ -76,7 +76,7 @@ main[b-5xzgq4paib] {
         padding-right: 1.5rem !important;
     }
 }
-/* /Layout/NavMenu.razor.rz.scp.css */
+/* _content/LifeRPG/Layout/NavMenu.razor.rz.scp.css */
 .navbar-toggler[b-1kucda3q6x] {
     background-color: rgba(255, 255, 255, 0.1);
 }
