@@ -1,8 +1,9 @@
 {
   "mainAssemblyName": "LifeRPG",
   "resources": {
-    "hash": "sha256-K+G8kAs1g83w8NsYZMd+Ywdp4nJaLwMrIu45mVWpo5A=",
+    "hash": "sha256-7cxdLhyfIFnWNHlMKMFQkmDn1H7H8UdWC6uKoEbjjjs=",
     "fingerprinting": {
+      "Blazored.LocalStorage.12n6dz54qr.wasm": "Blazored.LocalStorage.wasm",
       "Microsoft.AspNetCore.Authorization.bvu82j4ad3.wasm": "Microsoft.AspNetCore.Authorization.wasm",
       "Microsoft.AspNetCore.Components.ptfrz3fits.wasm": "Microsoft.AspNetCore.Components.wasm",
       "Microsoft.AspNetCore.Components.Forms.73oi73dvgk.wasm": "Microsoft.AspNetCore.Components.Forms.wasm",
@@ -204,8 +205,8 @@
       "icudt_CJK.tjcz0u77k5.dat": "icudt_CJK.dat",
       "icudt_EFIGS.tptq2av103.dat": "icudt_EFIGS.dat",
       "icudt_no_CJK.lfu7j35m59.dat": "icudt_no_CJK.dat",
-      "LifeRPG.575cewyvo6.wasm": "LifeRPG.wasm",
-      "LifeRPG.ifd1pwyz3y.pdb": "LifeRPG.pdb"
+      "LifeRPG.lu7l7nixyw.wasm": "LifeRPG.wasm",
+      "LifeRPG.6aurz3wil6.pdb": "LifeRPG.pdb"
     },
     "jsModuleNative": {
       "dotnet.native.st0ovrfdhi.js": "sha256-MBW/zayfv+YU6mhH7y4b8NNU4D1EYd7nf9gYrFshnnY="
@@ -226,6 +227,7 @@
       "System.Private.CoreLib.s7q7c40kwm.wasm": "sha256-iGMXxmqCFT+FffsSHg2wJVdTQK5DBARA+XYzwKY1Gak="
     },
     "assembly": {
+      "Blazored.LocalStorage.12n6dz54qr.wasm": "sha256-OaMAAd5n7ORfyur5e3QIyEVKJ76MKIvwbg7/icnnYcU=",
       "Microsoft.AspNetCore.Authorization.bvu82j4ad3.wasm": "sha256-R3z3EHDfLygNZKgrLSQoa3nUMS29QCyoWiSkZCtA1qg=",
       "Microsoft.AspNetCore.Components.ptfrz3fits.wasm": "sha256-3edzx5YfT09UfFs9ODDU3tlEeGEVSuzQc3N0d9Eiiww=",
       "Microsoft.AspNetCore.Components.Forms.73oi73dvgk.wasm": "sha256-jdKRM9bLidOnwHpF0bAv2QzdQH6rVe9EV27lHGoE/V4=",
@@ -418,10 +420,10 @@
       "WindowsBase.pg3o6xzigg.wasm": "sha256-dz62CHynC+zqTkbMOf3vm7YAhiRA8/pIoAwuqHfBL5M=",
       "mscorlib.jl2pswegra.wasm": "sha256-mSoCIDTdCQKTipW8VmFCypW/4AopZauaYRa8LoZdHvY=",
       "netstandard.uriri6ambh.wasm": "sha256-yuH/cvPd6r8N9nfPWihyckFD7hPFP+VQtQQxEqi7HIQ=",
-      "LifeRPG.575cewyvo6.wasm": "sha256-UdNNi72Vf68qYCr3ez2y+pLPFmoMxHg9Bs1W+HiLpCQ="
+      "LifeRPG.lu7l7nixyw.wasm": "sha256-A2Ix/qcN7CO7O2XtzI5HuPytO39MPTVEzf7jW5aE7rI="
     },
     "pdb": {
-      "LifeRPG.ifd1pwyz3y.pdb": "sha256-wuzrGgo9bX+tTtMGvH0X7YTMNHSGhw7v3dMcjlnxgMs="
+      "LifeRPG.6aurz3wil6.pdb": "sha256-8r5bB0Xi1hOejFDHRhi1Guv/iyzs+4H6nA2h/kAZoEY="
     }
   },
   "cacheBootResources": true,
