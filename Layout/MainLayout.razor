@@ -1,5 +1,9 @@
 ﻿@inherits LayoutComponentBase
 @using MudBlazor
+@using LifeRpg.Theme
+@inject MudThemeProvider MudThemeProvider
+
+<MudThemeProvider Theme="RpgTheme.Instance" />
 
 <MudSnackbarProvider />
 

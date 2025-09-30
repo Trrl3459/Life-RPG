@@ -1,17 +1,17 @@
 ﻿@page "/"
 @using MudBlazor
 
+@inject ISnackbar Snackbar
+
 <PageTitle>Home</PageTitle>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10 col-lg-8 text-center">
 
-            <MudAlert Severity="Severity.Success" Icon="@Icons.Material.Filled.CheckCircle" Dense="true" Class="mb-4">
-                Congratulations, LifeRPG is successfully running!
+            <MudAlert Severity="Severity.Success" NoIcon=true Dense="true" Class="mb-4">
+                Welcome to Life RPG!
             </MudAlert>
-
-            <MudText Typo="Typo.h3" GutterBottom="true">Welcome to the application</MudText>
             
 
             <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="/dashboard">Login</MudButton>
@@ -66,3 +66,17 @@
         </MudItem>
     </MudGrid>
 </div>
+
+
+@code {
+    private bool _Snackshown = false;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender && !_Snackshown)
+        {
+            Snackbar.Add("Congratulations, LifeRPG is successfully running!", Severity.Success);
+            _Snackshown = true;
+        }
+    }
+}

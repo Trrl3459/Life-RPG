@@ -152,38 +152,38 @@
         }
       },
       {
-        "HashCode": -684016577,
+        "HashCode": 921993608,
         "Kind": "Components.Component",
-        "Name": "LifeRPG.Pages.Weather",
+        "Name": "LifeRPG.App",
         "AssemblyName": "LifeRPG",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "Weather"
+            "TagName": "App"
           }
         ],
         "Metadata": {
-          "Common.TypeName": "LifeRPG.Pages.Weather",
-          "Common.TypeNameIdentifier": "Weather",
-          "Common.TypeNamespace": "LifeRPG.Pages",
+          "Common.TypeName": "LifeRPG.App",
+          "Common.TypeNameIdentifier": "App",
+          "Common.TypeNamespace": "LifeRPG",
           "Runtime.Name": "Components.IComponent"
         }
       },
       {
-        "HashCode": -465477614,
+        "HashCode": 411443383,
         "Kind": "Components.Component",
-        "Name": "LifeRPG.Pages.Weather",
+        "Name": "LifeRPG.App",
         "AssemblyName": "LifeRPG",
         "CaseSensitive": true,
         "TagMatchingRules": [
           {
-            "TagName": "LifeRPG.Pages.Weather"
+            "TagName": "LifeRPG.App"
           }
         ],
         "Metadata": {
-          "Common.TypeName": "LifeRPG.Pages.Weather",
-          "Common.TypeNameIdentifier": "Weather",
-          "Common.TypeNamespace": "LifeRPG.Pages",
+          "Common.TypeName": "LifeRPG.App",
+          "Common.TypeNameIdentifier": "App",
+          "Common.TypeNamespace": "LifeRPG",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch",
           "Runtime.Name": "Components.IComponent"
         }
@@ -332,43 +332,6 @@
           "Common.TypeName": "LifeRPG.Pages.Counter",
           "Common.TypeNameIdentifier": "Counter",
           "Common.TypeNamespace": "LifeRPG.Pages",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch",
-          "Runtime.Name": "Components.IComponent"
-        }
-      },
-      {
-        "HashCode": 921993608,
-        "Kind": "Components.Component",
-        "Name": "LifeRPG.App",
-        "AssemblyName": "LifeRPG",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "App"
-          }
-        ],
-        "Metadata": {
-          "Common.TypeName": "LifeRPG.App",
-          "Common.TypeNameIdentifier": "App",
-          "Common.TypeNamespace": "LifeRPG",
-          "Runtime.Name": "Components.IComponent"
-        }
-      },
-      {
-        "HashCode": 411443383,
-        "Kind": "Components.Component",
-        "Name": "LifeRPG.App",
-        "AssemblyName": "LifeRPG",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "LifeRPG.App"
-          }
-        ],
-        "Metadata": {
-          "Common.TypeName": "LifeRPG.App",
-          "Common.TypeNameIdentifier": "App",
-          "Common.TypeNamespace": "LifeRPG",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch",
           "Runtime.Name": "Components.IComponent"
         }
@@ -123193,11 +123156,6 @@
   },
   "RootNamespace": "LifeRPG",
   "Documents": [
-    {
-      "FilePath": "c:\\Users\\hight\\Coding\\LifeRPG\\Pages\\Weather.razor",
-      "TargetPath": "Pages\\Weather.razor",
-      "FileKind": "component"
-    },
     {
       "FilePath": "c:\\Users\\hight\\Coding\\LifeRPG\\App.razor",
       "TargetPath": "App.razor",

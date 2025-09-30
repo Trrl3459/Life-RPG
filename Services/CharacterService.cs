@@ -1,13 +1,9 @@
-
-
-using System;
-using System.Threading.Tasks;
-using LifeRPG.Data;
-using static LifeRPG.Data.QuestType;
+using Blazored.LocalStorage;
 
 public class CharacterService
 {
-    public Character Player { get; set; } = new Character
+    // Character instance
+    public Character Player { get; private set; } = new Character
     {
         Name = "Hero",
         Level = 1,
@@ -16,28 +12,33 @@ public class CharacterService
         Gold = 0
     };
 
-    public async Task AddXPAsync(int amount)
+    private readonly ILocalStorageService _localStorage;
+    private const string StorageKey = "life-rpg-character";
+
+    // Constructor
+    public CharacterService(ILocalStorageService localStorage)
     {
-        Player.CurrentXP += amount;
-        // TODO: Add level-up logic
-        await SaveAsync();
+        _localStorage = localStorage;
     }
 
-    public void AddGold(int amount)
+    public async Task LoadCharacterStateAsync()
+{
+    var storedCharacter = await _localStorage.GetItemAsync<Character>(StorageKey);
+    if (storedCharacter != null)
     {
-        Player.Gold += amount;
-        // No SaveAsync call here, assuming it's called elsewhere or not needed for every gold change.
+        Player = storedCharacter;
     }
+    else
+    {
+        // Fallback to default if no data (e.g., from Day 2)
+        Player = new Character { Name = "Hero", Level = 1, CurrentXP = 0, XPToNextLevel = 35, Gold = 0 };
+    }
+}
 
-    private double EffectiveXPMultiplier(QuestType type, int streakDays, int repeatsToday)
-    {
-        // Placeholder implementation
-        return 100.0;
-    }
+public async Task SaveCharacterStateAsync()
+{
+    await _localStorage.SetItemAsync(StorageKey, Player);
+}
 
-    public async Task SaveAsync()
-    {
-        // Placeholder for saving character data
-        await Task.CompletedTask;
-    }
+
 }
