@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "LifeRPG",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["watch", "run"],
+      "port": 5017
+    }
+  ]
+}

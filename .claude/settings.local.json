@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 30 dotnet build:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git merge:*)"
+    ]
+  }
+}
