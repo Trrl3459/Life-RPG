@@ -1,2 +1,0 @@
-C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\System.Drawing.dll
-B2567AA4-02D3-4612-8ED7-0E9A8405131F

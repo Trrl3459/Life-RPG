@@ -6,7 +6,6 @@ public sealed class Quest
 {
     public Guid Gid { get; set; } = Guid.NewGuid();
 
-    public int Id { get; set; }                     // Used for database
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public QuestType Type { get; set; }

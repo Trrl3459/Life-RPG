@@ -1,16 +1,12 @@
-
-namespace LifeRPG.Models
+namespace LifeRPG.Data
 {
-    public enum StatType { Attack, Willpower, Vitality }
     public sealed class Character
     {
-        public string Name { get; set; } = "Player";    // Default name
-
-        public int Id { get; set; }                     // Used for database
-        public int Level { get; set; } = 1;             // Default level
+        public string Name { get; set; } = "Hero";
+        public int Level { get; set; } = 1;
         public int CurrentXP { get; set; }
-        public int XPToNextLevel { get; set; }
-        public int Gold { get; set; } = 0;              // Default gold
+        public int XPToNextLevel { get; set; } = 35;
+        public int Gold { get; set; } = 0;
 
         public int AttackLevel { get; set; } = 1;
         public int WillpowerLevel { get; set; } = 1;

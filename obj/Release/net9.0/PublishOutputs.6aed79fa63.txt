@@ -1,2 +1,0 @@
-C:\Users\hight\Coding\LifeRPG\bin\Release\net9.0\publish\e_sqlite3.a
-C:\Users\hight\Coding\LifeRPG\bin\Release\net9.0\publish\web.config

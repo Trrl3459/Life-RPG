@@ -1,2 +1,0 @@
-C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\System.Runtime.InteropServices.dll
-2FF726B3-0C53-4057-8A18-C8ABA445BE7D
