@@ -1,19 +1,23 @@
 
-
-public enum StatType { Attack, Willpower, Vitality }
-public sealed class Character
+namespace LifeRPG.Models
 {
-    public string Name { get; set; } = "Player";    // Default name
-    public int Level { get; set; } = 1;             // Default level
-    public int CurrentXP { get; set; }         
-    public int XPToNextLevel { get; set; }
-    public int Gold { get; set; } = 0;              // Default gold
+    public enum StatType { Attack, Willpower, Vitality }
+    public sealed class Character
+    {
+        public string Name { get; set; } = "Player";    // Default name
 
-    public int AttackLevel { get; set; } = 1;
-    public int WillpowerLevel { get; set; } = 1;
-    public int VitalityLevel { get; set; } = 1;
+        public int Id { get; set; }                     // Used for database
+        public int Level { get; set; } = 1;             // Default level
+        public int CurrentXP { get; set; }
+        public int XPToNextLevel { get; set; }
+        public int Gold { get; set; } = 0;              // Default gold
 
-    public int StreakDays { get; set; }
+        public int AttackLevel { get; set; } = 1;
+        public int WillpowerLevel { get; set; } = 1;
+        public int VitalityLevel { get; set; } = 1;
 
-    public int StatLevel => AttackLevel + WillpowerLevel + VitalityLevel;
+        public int StreakDays { get; set; }
+
+        public int StatLevel => AttackLevel + WillpowerLevel + VitalityLevel;
+    }
 }

@@ -1,0 +1,3 @@
+C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\Microsoft.Extensions.Configuration.Abstractions.dll
+75BF098F-A825-4F5F-900F-4817AE94997B
+6000002

@@ -1,0 +1,13 @@
+C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\Microsoft.Extensions.Configuration.Json.dll
+C0FE8AA2-474A-44EF-B7BC-0F418A3026E4
+6000001
+6000002
+6000003
+6000007
+6000008
+6000009
+600000a
+600000b
+600000c
+600000d
+600000e

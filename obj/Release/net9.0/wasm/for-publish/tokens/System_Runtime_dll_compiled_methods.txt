@@ -1,0 +1,2 @@
+C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\System.Runtime.dll
+A43B8CEA-D2F7-482D-991B-1A4C6D79E775

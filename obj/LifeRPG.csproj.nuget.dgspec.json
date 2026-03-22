@@ -20,6 +20,7 @@
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -57,15 +58,42 @@
               "target": "Package",
               "version": "[9.0.7, )"
             },
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.7, )",
               "autoReferenced": true
             },
+<<<<<<< HEAD
+=======
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.10, )",
+              "autoReferenced": true
+            },
+>>>>>>> d1b96d2 (Added SQLite integration and eliminated Blazored LocalStorage)
             "MudBlazor": {
               "target": "Package",
               "version": "[8.10.0, )"
+            },
+            "SQLitePCLRaw.bundle_e_sqlite3": {
+              "target": "Package",
+              "version": "[3.0.2, )"
             }
           },
           "imports": [
@@ -79,6 +107,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+<<<<<<< HEAD
+=======
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.10, 9.0.10]"
+            }
+          ],
+>>>>>>> d1b96d2 (Added SQLite integration and eliminated Blazored LocalStorage)
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"

@@ -1,0 +1,2 @@
+C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\System.Threading.dll
+88C3378F-72FC-43B0-80A2-C5A7AE475BA1

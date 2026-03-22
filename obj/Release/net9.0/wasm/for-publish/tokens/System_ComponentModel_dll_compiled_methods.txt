@@ -1,0 +1,2 @@
+C:\Users\hight\Coding\LifeRPG\obj\Release\net9.0\wasm\for-publish\aot-in\System.ComponentModel.dll
+92AE18CF-033A-499E-A737-F4E5C52FD37A

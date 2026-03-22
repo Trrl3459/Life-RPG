@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 d7991fd34a3bda22fb1f6c1980b90df4b604f9981a451ed4db4c94af212d8c9c
 =======
 de04a7028f2a62d61ff3fed0f7ff30f505a433e19ae7ecf592143a7399dc0de5
 >>>>>>> 0bef6921d29310227b0cff4caf36aa93f448509c
+=======
+2adbe0a451aab3e6908abfa03737f91b21b2235d8cff5c04d2813c4d80b06a50
+>>>>>>> d1b96d2 (Added SQLite integration and eliminated Blazored LocalStorage)

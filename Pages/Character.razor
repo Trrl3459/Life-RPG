@@ -1,6 +1,11 @@
 @page "/character"
+@using MudBlazor
+@using LifeRPG.Services
+@using LifeRPG.Data
+@using LifeRPG.Models
 @inject CharacterService CharacterService
 
+<<<<<<< HEAD
 <MudCard>
     <MudCardContent>
         <MudTextField @bind-Value="CharacterService.Player.Name" Label="Character Name" />
@@ -13,3 +18,53 @@
 @code {
     
 }
+=======
+
+
+@if (Player is null)
+{
+    <MudCard Class="ma-4 pa-4">
+        <MudCardContent>
+            <MudProgressCircular Size="Size.Large" />
+            <MudText Class="mt-2">Loading character…</MudText>
+        </MudCardContent>
+    </MudCard>
+}
+else
+{
+    <MudCard Class="ma-4" Style="max-width: 520px;">
+        <MudCardContent>
+            <MudTextField @bind-Value="Player.Name" Label="Character Name" Disabled="true" />
+            <MudText Class="mt-2">Level: @Player.Level</MudText>
+            <MudText>XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
+            <MudText>Gold: @Player.Gold</MudText>
+
+            <MudStack Row="true" Spacing="2" Class="mt-3">
+                <MudButton Variant="Variant.Filled" OnClick="() => GainXp(5)">+5 XP</MudButton>
+                <MudButton Variant="Variant.Outlined" OnClick="() => GainGold(10)">+10 Gold</MudButton>
+            </MudStack>
+        </MudCardContent>
+    </MudCard>
+}
+
+@code {
+    private LifeRPG.Models.Character? Player;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Player = await CharacterService.GetOrCreateAsync();
+    }
+
+    private async Task GainXp(int amount)
+    {
+        await CharacterService.AddXPAsync(amount);
+        Player = await CharacterService.GetOrCreateAsync(); // refresh from DB
+    }
+
+    private async Task GainGold(int amount)
+    {
+        await CharacterService.AddGoldAsync(amount);
+        Player = await CharacterService.GetOrCreateAsync(); // refresh from DB
+    }
+}
+>>>>>>> d1b96d2 (Added SQLite integration and eliminated Blazored LocalStorage)
