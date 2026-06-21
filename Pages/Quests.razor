@@ -1,0 +1,94 @@
+@page "/quests"
+@inject QuestService QuestService
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+<PageTitle>Quests</PageTitle>
+
+<MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Class="ma-4">
+    <MudText Typo="Typo.h4">Quest Log</MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenCreateDialog">New Quest</MudButton>
+</MudStack>
+
+<MudStack Row="true" Class="ma-4">
+    <MudChip T="QuestType?" Color="@(_filter is null ? Color.Primary : Color.Default)" OnClick="@(() => SetFilter(null))">All</MudChip>
+    @foreach (var type in Enum.GetValues<QuestType>())
+    {
+        <MudChip T="QuestType?" Color="@(_filter == type ? Color.Primary : Color.Default)" OnClick="@(() => SetFilter(type))">@type</MudChip>
+    }
+</MudStack>
+
+@if (_quests is null)
+{
+    <MudProgressCircular Indeterminate="true" Class="ma-4" />
+}
+else if (!FilteredQuests.Any())
+{
+    <MudText Class="ma-4">No quests yet. Create one to get started.</MudText>
+}
+else
+{
+    <MudStack Class="ma-4" Spacing="3">
+        @foreach (var quest in FilteredQuests)
+        {
+            <MudCard>
+                <MudCardContent>
+                    <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+                        <div>
+                            <MudText Typo="Typo.h6" Style="@(quest.IsCompleted ? "text-decoration: line-through;" : null)">@quest.Title</MudText>
+                            <MudText Typo="Typo.body2">@quest.Description</MudText>
+                            <MudText Typo="Typo.caption">@quest.Type · @quest.XPReward XP · @quest.GoldReward Gold</MudText>
+                        </div>
+                        <MudStack Row="true">
+                            <MudButton Variant="Variant.Outlined" Color="Color.Success" Disabled="quest.IsCompleted"
+                                       OnClick="@(() => CompleteQuest(quest))">
+                                @(quest.IsCompleted ? "Completed" : "Complete")
+                            </MudButton>
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error"
+                                           OnClick="@(() => DeleteQuest(quest))" />
+                        </MudStack>
+                    </MudStack>
+                </MudCardContent>
+            </MudCard>
+        }
+    </MudStack>
+}
+
+@code {
+    private List<Quest>? _quests;
+    private QuestType? _filter;
+
+    private IEnumerable<Quest> FilteredQuests =>
+        _quests is null ? Enumerable.Empty<Quest>() :
+        _filter is null ? _quests : _quests.Where(q => q.Type == _filter);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _quests = await QuestService.GetQuestsAsync();
+    }
+
+    private void SetFilter(QuestType? type) => _filter = type;
+
+    private async Task OpenCreateDialog()
+    {
+        var dialog = await DialogService.ShowAsync<CreateQuestDialog>("New Quest");
+        var result = await dialog.Result;
+
+        if (result is null || result.Canceled || result.Data is not Quest quest)
+            return;
+
+        await QuestService.AddQuestAsync(quest);
+        Snackbar.Add($"Quest \"{quest.Title}\" created!", Severity.Success);
+    }
+
+    private async Task CompleteQuest(Quest quest)
+    {
+        await QuestService.CompleteQuestAsync(quest);
+        Snackbar.Add($"Quest complete! +{quest.XPReward} XP, +{quest.GoldReward} Gold", Severity.Success);
+    }
+
+    private async Task DeleteQuest(Quest quest)
+    {
+        await QuestService.RemoveQuestAsync(quest);
+    }
+}

@@ -1,12 +1,84 @@
 @page "/dashboard"
+@inject CharacterService CharacterService
+@inject QuestService QuestService
+@inject ISnackbar Snackbar
 
 <PageTitle>Dashboard</PageTitle>
 
-<h3 class="row justify-content-center">Dashboard</h3>
+<MudText Typo="Typo.h4" Class="ma-4">Dashboard</MudText>
 
-<div class="my-7">
-    <MudContainer  class="row justify-content-center">
-        <MudProgressLinear Color="Color.Info" Size="Size.Medium" Indeterminate="false" />
-        <MudText Typo="Typo.h5">XP</MudText>
-    </MudContainer>
-</div>
+@if (_player is null || _quests is null)
+{
+    <MudProgressCircular Indeterminate="true" Class="ma-4" />
+}
+else
+{
+    <MudCard Class="ma-4">
+        <MudCardContent>
+            <MudText Typo="Typo.h5">@_player.Name — Level @_player.Level</MudText>
+            <MudText Typo="Typo.body2" Class="mt-1">XP: @_player.CurrentXP / @_player.XPToNextLevel</MudText>
+            <MudProgressLinear Color="Color.Info" Size="Size.Medium" Class="mt-1"
+                                Value="@XpPercent" />
+            <MudStack Row="true" Spacing="4" Class="mt-3">
+                <MudText>Gold: @_player.Gold</MudText>
+                <MudText>Streak: @_player.StreakDays days</MudText>
+            </MudStack>
+        </MudCardContent>
+    </MudCard>
+
+    <MudText Typo="Typo.h5" Class="ma-4">Today's Quests</MudText>
+
+    @if (!TodaysQuests.Any())
+    {
+        <MudText Class="ma-4">No daily quests yet. <MudLink Href="/quests">Add one</MudLink>.</MudText>
+    }
+    else
+    {
+        <MudStack Class="ma-4" Spacing="3">
+            @foreach (var quest in TodaysQuests)
+            {
+                <MudCard>
+                    <MudCardContent>
+                        <MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center">
+                            <div>
+                                <MudText Typo="Typo.h6">@quest.Title</MudText>
+                                <MudText Typo="Typo.caption">@quest.XPReward XP · @quest.GoldReward Gold</MudText>
+                            </div>
+                            <MudButton Variant="Variant.Outlined" Color="Color.Success"
+                                       OnClick="@(() => CompleteQuest(quest))">
+                                Complete
+                            </MudButton>
+                        </MudStack>
+                    </MudCardContent>
+                </MudCard>
+            }
+        </MudStack>
+    }
+}
+
+@code {
+    private LifeRPG.Data.Character? _player;
+    private List<Quest>? _quests;
+
+    private double XpPercent => _player is null || _player.XPToNextLevel == 0
+        ? 0
+        : 100.0 * _player.CurrentXP / _player.XPToNextLevel;
+
+    private IEnumerable<Quest> TodaysQuests =>
+        _quests is null
+            ? Enumerable.Empty<Quest>()
+            : _quests.Where(q => q.Type == QuestType.Daily && !q.IsCompleted);
+
+    protected override async Task OnInitializedAsync()
+    {
+        _player = await CharacterService.GetOrCreateAsync();
+        _quests = await QuestService.GetQuestsAsync();
+    }
+
+    private async Task CompleteQuest(Quest quest)
+    {
+        await QuestService.CompleteQuestAsync(quest);
+        _player = await CharacterService.GetOrCreateAsync();
+        Snackbar.Add($"Quest complete! +{quest.XPReward} XP, +{quest.GoldReward} Gold", Severity.Success);
+    }
+}

@@ -24,16 +24,18 @@ LifeRPG/
 │   └── QuestType.cs          # Quest type enum (Daily, Weekly, Milestone)
 ├── Services/                  # Business logic and state management
 │   ├── CharacterService.cs   # Manages character state, XP, leveling, gold
-│   └── QuestService.cs       # Manages quest CRUD and completion rewards
+│   └── QuestService.cs       # Manages quest CRUD, completion, and rewards (depends on CharacterService)
 ├── Pages/                     # Routable page components
 │   ├── Home.razor            # Landing page
-│   ├── Dashboard.razor       # Main hub with character summary and today's quests
+│   ├── Dashboard.razor       # Main hub: live character summary + today's incomplete Daily quests
 │   ├── Character.razor       # Character sheet displaying stats
-│   ├── Quests.razor          # Quest log (in progress)
-│   └── Rewards.razor         # Reward store (not yet implemented)
+│   ├── Quests.razor          # Quest log: filter by type, complete, delete, create via dialog
+│   └── Rewards.razor         # Reward store (not yet implemented; route currently 404s)
+├── Components/                # Reusable non-page UI (dialogs, etc.)
+│   └── CreateQuestDialog.razor # MudDialog + MudForm for creating a new quest
 ├── Layout/                    # Layout components
 │   ├── MainLayout.razor      # Primary app layout with MudLayout, drawer, app bar
-│   └── NavMenu.razor         # Navigation menu (legacy, being replaced by MudNavMenu)
+│   └── NavMenu.razor         # Navigation menu (legacy, unused — MainLayout's MudNavMenu is what actually renders)
 ├── Theme/                     # Custom theming
 │   ├── ThemeFactory.cs       # MudBlazor theme configuration
 │   └── RpgTheme.cs           # RPG-styled color palette
@@ -85,6 +87,10 @@ This application uses RPG game terminology to represent productivity concepts:
 
 All services are registered as singletons in `Program.cs`. Services manage application state and coordinate between the UI and local storage. Services should expose async methods for any operations involving state persistence.
 
+`QuestService` depends on `CharacterService` (injected via constructor) so that `CompleteQuestAsync` can grant XP and gold in one call. Keep the dependency in this direction only — `CharacterService` must not depend back on `QuestService`, to avoid a circular singleton registration.
+
+Note the `Character` model lives in `LifeRPG.Data`, but there is also a routable `LifeRPG.Pages.Character` (the `Character.razor` page component) — the two share a short name. Code outside `Pages/Character.razor` that needs the data model must reference it as `LifeRPG.Data.Character` to avoid a compiler ambiguity (see `Dashboard.razor`).
+
 ### State Persistence Pattern
 
 All state changes must be immediately persisted to local storage. The pattern is:
@@ -126,7 +132,7 @@ The project has nullable reference types enabled. Use `?` for nullable types and
 
 ## Current Development Status
 
-### Completed (Days 1-6 of 15-Day Plan)
+### Completed (Days 1-9 of 15-Day Plan)
 
 * Project scaffolding and MudBlazor setup
 * MainLayout with MudAppBar and MudDrawer navigation
@@ -135,21 +141,17 @@ The project has nullable reference types enabled. Use `?` for nullable types and
 * Character page with basic stat display
 * Quest model, QuestType enum, and QuestService
 * Quest list persistence to local storage
-* Quest completion logic with XP and gold rewards
+* Quest completion logic with XP and gold rewards (`QuestService.CompleteQuestAsync`)
 * Snackbar notifications for quest completion
+* CreateQuestDialog component with form validation (`Components/CreateQuestDialog.razor`)
+* Quests page with type filtering, completion, and deletion (`Pages/Quests.razor`)
+* Dashboard page with live character summary and today's incomplete Daily quests
 
-### In Progress (Day 7)
+### Not Yet Started (Days 10-15)
 
-* CreateQuestDialog component with form validation
-* Quest creation UI using MudDialog and MudForm
-
-### Not Yet Started (Days 8-15)
-
-* Quest display and filtering on Quests page
-* Quest deletion functionality
-* Dashboard page with character summary and today's quests
-* Reward system (models, service, UI)
+* Reward system (models, service, UI) — `/rewards` route currently 404s
 * Reward purchase logic
+* Daily quest reset (quests do not currently un-complete at midnight/on a new day)
 * Theme refinement and polish
 * Code review and refactoring
 

@@ -1,25 +1,6 @@
 @page "/character"
 @inject CharacterService CharacterService
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<MudCard>
-    <MudCardContent>
-        <MudTextField @bind-Value="CharacterService.Player.Name" Label="Character Name" />
-        <MudText>Level: @CharacterService.Player.Level</MudText>
-        <MudText>XP: @CharacterService.Player.CurrentXP / @CharacterService.Player.XPToNextLevel</MudText>
-        <MudText>Gold: @CharacterService.Player.Gold</MudText>
-    </MudCardContent>
-</MudCard>
-
-@code {
-    
-}
-=======
-
-
-=======
->>>>>>> c86725c (Migrate from EF Core + SQLite to Blazored.LocalStorage)
 @if (Player is null)
 {
     <MudCard Class="ma-4 pa-4">
@@ -66,4 +47,3 @@ else
         Player = await CharacterService.GetOrCreateAsync();
     }
 }
->>>>>>> d1b96d2 (Added SQLite integration and eliminated Blazored LocalStorage)

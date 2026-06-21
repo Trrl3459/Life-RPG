@@ -1,0 +1,42 @@
+@using LifeRPG.Data
+
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="_form" Model="_quest">
+            <MudTextField @bind-Value="_quest.Title" Label="Title" Required="true"
+                          RequiredError="Title is required" />
+            <MudTextField @bind-Value="_quest.Description" Label="Description" Lines="2" Class="mt-3" />
+            <MudSelect @bind-Value="_quest.Type" Label="Type" Class="mt-3">
+                @foreach (var type in Enum.GetValues<QuestType>())
+                {
+                    <MudSelectItem Value="@type">@type</MudSelectItem>
+                }
+            </MudSelect>
+            <MudNumericField @bind-Value="_quest.XPReward" Label="XP Reward" Min="0" Class="mt-3" />
+            <MudNumericField @bind-Value="_quest.GoldReward" Label="Gold Reward" Min="0" Class="mt-3" />
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = default!;
+
+    private MudForm _form = default!;
+    private readonly Quest _quest = new();
+
+    private async Task Submit()
+    {
+        await _form.Validate();
+        if (!_form.IsValid)
+            return;
+
+        MudDialog.Close(DialogResult.Ok(_quest));
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}
