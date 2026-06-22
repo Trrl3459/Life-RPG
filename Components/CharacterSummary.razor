@@ -1,0 +1,22 @@
+@using LifeRPG.Data
+
+<MudCard Class="ma-4">
+    <MudCardContent>
+        <MudText Typo="Typo.h5">@Player.Name — Level @Player.Level</MudText>
+        <MudText Typo="Typo.body2" Class="mt-1">XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
+        <MudProgressLinear Color="Color.Info" Size="Size.Medium" Class="mt-1" Value="@XpPercent" />
+        <MudStack Row="true" Spacing="4" Class="mt-3">
+            <MudText>Gold: @Player.Gold</MudText>
+            <MudText>Streak: @Player.StreakDays days</MudText>
+        </MudStack>
+    </MudCardContent>
+</MudCard>
+
+@code {
+    [Parameter, EditorRequired]
+    public LifeRPG.Data.Character Player { get; set; } = default!;
+
+    private double XpPercent => Player.XPToNextLevel == 0
+        ? 0
+        : 100.0 * Player.CurrentXP / Player.XPToNextLevel;
+}

@@ -1,0 +1,57 @@
+@using LifeRPG.Data
+
+<MudDialog>
+    <DialogContent>
+        <MudForm @ref="_form" Model="_reward">
+            <MudTextField @bind-Value="_reward.Title" Label="Title" Required="true"
+                          RequiredError="Title is required" />
+            <MudTextField @bind-Value="_reward.Description" Label="Description" Lines="2" Class="mt-3" />
+            <MudNumericField @bind-Value="_reward.Cost" Label="Cost (Gold)" Min="0" Class="mt-3" />
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" Variant="Variant.Filled" OnClick="Submit">
+            @(IsEdit ? "Save" : "Create")
+        </MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private IMudDialogInstance MudDialog { get; set; } = default!;
+
+    [Parameter]
+    public Reward? Reward { get; set; }
+
+    private MudForm _form = default!;
+    private Reward _reward = new();
+
+    private bool IsEdit => Reward is not null;
+
+    protected override void OnInitialized()
+    {
+        // When editing, work on a copy so the original is untouched unless saved.
+        if (Reward is not null)
+        {
+            _reward = new Reward
+            {
+                Id = Reward.Id,
+                Title = Reward.Title,
+                Description = Reward.Description,
+                Cost = Reward.Cost
+            };
+        }
+    }
+
+    private async Task Submit()
+    {
+        await _form.Validate();
+        if (!_form.IsValid)
+            return;
+
+        MudDialog.Close(DialogResult.Ok(_reward));
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

@@ -25,5 +25,6 @@ builder.Services.AddMudServices(opts =>
 
 builder.Services.AddSingleton<CharacterService>();
 builder.Services.AddSingleton<QuestService>();
+builder.Services.AddSingleton<RewardService>();
 
 await builder.Build().RunAsync();

@@ -1,0 +1,83 @@
+@page "/rewards"
+@inject RewardService RewardService
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+<PageTitle>Rewards</PageTitle>
+
+<MudStack Row="true" Justify="Justify.SpaceBetween" AlignItems="AlignItems.Center" Class="ma-4">
+    <MudText Typo="Typo.h4">Reward Store</MudText>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="OpenCreateDialog">New Reward</MudButton>
+</MudStack>
+
+@if (_rewards is null)
+{
+    <MudProgressCircular Indeterminate="true" Class="ma-4" />
+}
+else if (!_rewards.Any())
+{
+    <MudText Class="ma-4">No rewards yet. Create one to start spending your gold.</MudText>
+}
+else
+{
+    <MudGrid Class="ma-2">
+        @foreach (var reward in _rewards)
+        {
+            <MudItem xs="12" sm="6" md="4">
+                <MudCard>
+                    <MudCardContent>
+                        <MudText Typo="Typo.h6">@reward.Title</MudText>
+                        <MudText Typo="Typo.body2">@reward.Description</MudText>
+                        <MudText Typo="Typo.caption">@reward.Cost Gold</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Outlined" Color="Color.Primary"
+                                   OnClick="@(() => OpenEditDialog(reward))">Edit</MudButton>
+                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error"
+                                       OnClick="@(() => DeleteReward(reward))" />
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    private List<Reward>? _rewards;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _rewards = await RewardService.GetRewardsAsync();
+    }
+
+    private async Task OpenCreateDialog()
+    {
+        var dialog = await DialogService.ShowAsync<CreateRewardDialog>("New Reward");
+        var result = await dialog.Result;
+
+        if (result is null || result.Canceled || result.Data is not Reward reward)
+            return;
+
+        await RewardService.AddRewardAsync(reward);
+        Snackbar.Add($"Reward \"{reward.Title}\" created!", Severity.Success);
+    }
+
+    private async Task OpenEditDialog(Reward reward)
+    {
+        var parameters = new DialogParameters<CreateRewardDialog> { { x => x.Reward, reward } };
+        var dialog = await DialogService.ShowAsync<CreateRewardDialog>("Edit Reward", parameters);
+        var result = await dialog.Result;
+
+        if (result is null || result.Canceled || result.Data is not Reward updated)
+            return;
+
+        await RewardService.UpdateRewardAsync(updated);
+        Snackbar.Add($"Reward \"{updated.Title}\" updated!", Severity.Success);
+    }
+
+    private async Task DeleteReward(Reward reward)
+    {
+        await RewardService.RemoveRewardAsync(reward);
+        Snackbar.Add($"Reward \"{reward.Title}\" deleted.", Severity.Info);
+    }
+}
