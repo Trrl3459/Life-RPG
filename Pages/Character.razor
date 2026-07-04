@@ -14,12 +14,13 @@ else
 {
     <MudCard Class="ma-4" Style="max-width: 520px;">
         <MudCardContent>
-            <MudTextField @bind-Value="Player.Name" Label="Character Name" Disabled="true" />
+            <MudTextField @bind-Value="_name" Label="Character Name" />
             <MudText Class="mt-2">Level: @Player.Level</MudText>
             <MudText>XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
             <MudText>Gold: @Player.Gold</MudText>
 
             <MudStack Row="true" Spacing="2" Class="mt-3">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveName">Save Name</MudButton>
                 <MudButton Variant="Variant.Filled" OnClick="() => GainXp(5)">+5 XP</MudButton>
                 <MudButton Variant="Variant.Outlined" OnClick="() => GainGold(10)">+10 Gold</MudButton>
             </MudStack>
@@ -29,21 +30,32 @@ else
 
 @code {
     private LifeRPG.Data.Character? Player;
+    private string _name = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
         Player = await CharacterService.GetOrCreateAsync();
+        _name = Player.Name;
     }
 
     private async Task GainXp(int amount)
     {
         await CharacterService.AddXPAsync(amount);
         Player = await CharacterService.GetOrCreateAsync();
+        _name = Player.Name;
     }
 
     private async Task GainGold(int amount)
     {
         await CharacterService.AddGoldAsync(amount);
         Player = await CharacterService.GetOrCreateAsync();
+        _name = Player.Name;
+    }
+
+    private async Task SaveName()
+    {
+        await CharacterService.SetNameAsync(_name);
+        Player = await CharacterService.GetOrCreateAsync();
+        _name = Player.Name;
     }
 }

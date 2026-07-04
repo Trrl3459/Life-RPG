@@ -3,10 +3,10 @@
 <MudDialog>
     <DialogContent>
         <MudForm @ref="_form" Model="_reward">
-            <MudTextField @bind-Value="_reward.Title" Label="Title" Required="true"
+            <MudTextField @bind-Value="_reward.Title" Label="Title" Required="true" Immediate="true"
                           RequiredError="Title is required" />
-            <MudTextField @bind-Value="_reward.Description" Label="Description" Lines="2" Class="mt-3" />
-            <MudNumericField @bind-Value="_reward.Cost" Label="Cost (Gold)" Min="0" Class="mt-3" />
+            <MudTextField @bind-Value="_reward.Description" Label="Description" Lines="2" Class="mt-3" Immediate="true" />
+            <MudNumericField @bind-Value="_reward.Cost" Label="Cost (Gold)" Min="0" Class="mt-3" Immediate="true" />
         </MudForm>
     </DialogContent>
     <DialogActions>

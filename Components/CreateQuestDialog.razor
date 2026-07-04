@@ -3,17 +3,17 @@
 <MudDialog>
     <DialogContent>
         <MudForm @ref="_form" Model="_quest">
-            <MudTextField @bind-Value="_quest.Title" Label="Title" Required="true"
+            <MudTextField @bind-Value="_quest.Title" Label="Title" Required="true" Immediate="true"
                           RequiredError="Title is required" />
-            <MudTextField @bind-Value="_quest.Description" Label="Description" Lines="2" Class="mt-3" />
+            <MudTextField @bind-Value="_quest.Description" Label="Description" Lines="2" Class="mt-3" Immediate="true" />
             <MudSelect @bind-Value="_quest.Type" Label="Type" Class="mt-3">
                 @foreach (var type in Enum.GetValues<QuestType>())
                 {
                     <MudSelectItem Value="@type">@type</MudSelectItem>
                 }
             </MudSelect>
-            <MudNumericField @bind-Value="_quest.XPReward" Label="XP Reward" Min="0" Class="mt-3" />
-            <MudNumericField @bind-Value="_quest.GoldReward" Label="Gold Reward" Min="0" Class="mt-3" />
+            <MudNumericField @bind-Value="_quest.XPReward" Label="XP Reward" Min="0" Class="mt-3" Immediate="true" />
+            <MudNumericField @bind-Value="_quest.GoldReward" Label="Gold Reward" Min="0" Class="mt-3" Immediate="true" />
         </MudForm>
     </DialogContent>
     <DialogActions>

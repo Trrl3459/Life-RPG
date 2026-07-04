@@ -59,6 +59,27 @@ public class CharacterService
         await SaveAsync();
     }
 
+    public async Task<bool> SpendGoldAsync(int amount)
+    {
+        if (amount < 0)
+            throw new ArgumentOutOfRangeException(nameof(amount));
+
+        var player = await GetOrCreateAsync();
+        if (player.Gold < amount)
+            return false;
+
+        player.Gold -= amount;
+        await SaveAsync();
+        return true;
+    }
+
+    public async Task SetNameAsync(string? name)
+    {
+        var player = await GetOrCreateAsync();
+        player.Name = string.IsNullOrWhiteSpace(name) ? "Hero" : name.Trim();
+        await SaveAsync();
+    }
+
     private async Task SaveAsync()
     {
         await _localStorage.SetItemAsync(StorageKey, _character);
