@@ -13,6 +13,7 @@ namespace LifeRPG.Data
         public int VitalityLevel { get; set; } = 1;
 
         public int StreakDays { get; set; }
+        public DateTime? LastActivityUtc { get; set; }
 
         public int StatLevel => AttackLevel + WillpowerLevel + VitalityLevel;
     }

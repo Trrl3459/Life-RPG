@@ -14,4 +14,5 @@ public sealed class Quest
     public bool IsCompleted { get; set; }
     public DateTime CreatedUtc { get; set; } = DateTime.UtcNow;
     public DateTime? DueDate { get; set; } // optional, nice for Weeklies/Milestones
+    public DateTime? LastCompletedUtc { get; set; } // drives Daily quest reset
 }

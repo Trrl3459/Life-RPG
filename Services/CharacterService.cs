@@ -33,8 +33,41 @@ public class CharacterService
             };
             await SaveAsync();
         }
+        else if (ExpireStreakIfNeeded(_character))
+        {
+            await SaveAsync();
+        }
 
         return _character;
+    }
+
+    private static bool ExpireStreakIfNeeded(Character player)
+    {
+        if (player.LastActivityUtc is null || player.StreakDays == 0)
+            return false;
+
+        var today = DateTime.UtcNow.Date;
+        if (player.LastActivityUtc.Value.Date < today.AddDays(-1))
+        {
+            player.StreakDays = 0;
+            return true;
+        }
+
+        return false;
+    }
+
+    public async Task RegisterDailyActivityAsync()
+    {
+        var player = await GetOrCreateAsync();
+        var today = DateTime.UtcNow.Date;
+        var lastDate = player.LastActivityUtc?.Date;
+
+        if (lastDate == today)
+            return; // already counted today
+
+        player.StreakDays = lastDate == today.AddDays(-1) ? player.StreakDays + 1 : 1;
+        player.LastActivityUtc = today;
+        await SaveAsync();
     }
 
     public async Task AddXPAsync(int amount)

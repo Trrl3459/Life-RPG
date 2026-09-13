@@ -4,7 +4,10 @@
       "Bash(timeout 30 dotnet build:*)",
       "mcp__Claude_Preview__preview_start",
       "Bash(git merge:*)",
-      "Bash(dotnet build:*)"
+      "Bash(dotnet build:*)",
+      "Bash(python -c ' *)",
+      "Bash(pdftotext \"C:\\\\Users\\\\hight\\\\Coding\\\\LifeRPG\\\\Life RPG Plan.pdf\" -)",
+      "PowerShell(dotnet build 2>&1)"
     ]
   }
 }

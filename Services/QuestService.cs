@@ -18,11 +18,30 @@ public class QuestService
 
     public async Task<List<Quest>> GetQuestsAsync()
     {
-        if (_quests.Count > 0)
-            return _quests;
+        if (_quests.Count == 0)
+            _quests = await _localStorage.GetItemAsync<List<Quest>>(StorageKey) ?? new();
 
-        _quests = await _localStorage.GetItemAsync<List<Quest>>(StorageKey) ?? new();
+        await ResetDailyQuestsIfNeededAsync();
         return _quests;
+    }
+
+    private async Task ResetDailyQuestsIfNeededAsync()
+    {
+        var today = DateTime.UtcNow.Date;
+        var changed = false;
+
+        foreach (var quest in _quests)
+        {
+            if (quest.Type == QuestType.Daily && quest.IsCompleted &&
+                quest.LastCompletedUtc is not null && quest.LastCompletedUtc.Value.Date < today)
+            {
+                quest.IsCompleted = false;
+                changed = true;
+            }
+        }
+
+        if (changed)
+            await SaveAsync();
     }
 
     public async Task AddQuestAsync(Quest quest)
@@ -48,10 +67,12 @@ public class QuestService
             return;
 
         quest.IsCompleted = true;
+        quest.LastCompletedUtc = DateTime.UtcNow;
         await SaveAsync();
 
         await _characterService.AddXPAsync(quest.XPReward);
         await _characterService.AddGoldAsync(quest.GoldReward);
+        await _characterService.RegisterDailyActivityAsync();
     }
 
     private async Task SaveAsync()
