@@ -24,7 +24,11 @@
 }
 else if (!FilteredQuests.Any())
 {
-    <MudText Class="ma-4">No quests yet. Create one to get started.</MudText>
+    <EmptyState Title="@(_filter is null ? "Your quest log is empty" : $"No {_filter} quests")"
+                Message="Every legend starts with a single quest."
+                Icon="@Icons.Material.Filled.MenuBook"
+                ActionText="New Quest"
+                OnAction="OpenCreateDialog" />
 }
 else
 {

@@ -22,9 +22,20 @@ else
         <MudItem xs="12" md="7">
             <MudText Typo="Typo.h5" Class="ma-4">Today's Quests</MudText>
 
-            @if (!TodaysQuests.Any())
+            @if (!TodaysQuests.Any() && !HasDailyQuests)
             {
-                <MudText Class="ma-4">No daily quests yet. <MudLink Href="/quests">Add one</MudLink>.</MudText>
+                <EmptyState Title="No daily quests yet"
+                            Message="Dailies are the habits you repeat every day. Forge your first one."
+                            Icon="@Icons.Material.Filled.Flag"
+                            ActionText="Add a quest"
+                            ActionHref="/quests" />
+            }
+            else if (!TodaysQuests.Any())
+            {
+                <EmptyState Title="All dailies complete!"
+                            Message="@($"Well fought, adventurer. Your streak stands at {_player.StreakDays} {(_player.StreakDays == 1 ? "day" : "days")}.")"
+                            Icon="@Icons.Material.Filled.EmojiEvents"
+                            IconColor="Color.Warning" />
             }
             else
             {
@@ -55,6 +66,8 @@ else
 @code {
     private LifeRPG.Data.Character? _player;
     private List<Quest>? _quests;
+
+    private bool HasDailyQuests => _quests?.Any(q => q.Type == QuestType.Daily) ?? false;
 
     private IEnumerable<Quest> TodaysQuests =>
         _quests is null

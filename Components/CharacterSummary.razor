@@ -1,13 +1,28 @@
 @using LifeRPG.Data
 
-<MudCard Class="ma-4">
+<MudCard Class="ma-4 rpg-character-card">
     <MudCardContent>
-        <MudText Typo="Typo.h5">@Player.Name — Level @Player.Level</MudText>
-        <MudText Typo="Typo.body2" Class="mt-1">XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
-        <MudProgressLinear Color="Color.Info" Size="Size.Medium" Class="mt-1" Value="@XpPercent" />
-        <MudStack Row="true" Spacing="4" Class="mt-3">
-            <MudText>Gold: @Player.Gold</MudText>
-            <MudText>Streak: @Player.StreakDays days</MudText>
+        <MudStack Row="true" Spacing="3" AlignItems="AlignItems.Center">
+            <div class="rpg-level-badge">
+                <span class="rpg-level-label">LVL</span>
+                <span class="rpg-level-value">@Player.Level</span>
+            </div>
+            <div style="flex: 1; min-width: 0;">
+                <MudText Typo="Typo.h5">@Player.Name</MudText>
+                <MudText Typo="Typo.caption">@(Player.XPToNextLevel - Player.CurrentXP) XP to level @(Player.Level + 1)</MudText>
+            </div>
+        </MudStack>
+
+        <MudText Typo="Typo.body2" Class="mt-3">XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
+        <MudProgressLinear Color="Color.Info" Size="Size.Medium" Rounded="true" Class="mt-1" Value="@XpPercent" />
+
+        <MudStack Row="true" Spacing="2" Class="mt-4">
+            <MudChip T="string" Color="Color.Tertiary" Variant="Variant.Outlined" Icon="@Icons.Material.Filled.Paid">
+                @Player.Gold Gold
+            </MudChip>
+            <MudChip T="string" Color="Color.Warning" Variant="Variant.Outlined" Icon="@Icons.Material.Filled.LocalFireDepartment">
+                @Player.StreakDays-day streak
+            </MudChip>
         </MudStack>
     </MudCardContent>
 </MudCard>

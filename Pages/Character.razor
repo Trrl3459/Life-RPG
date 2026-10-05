@@ -1,34 +1,63 @@
 @page "/character"
 @inject CharacterService CharacterService
+@inject ISnackbar Snackbar
+
+<PageTitle>Character</PageTitle>
+
+<MudText Typo="Typo.h4" Class="ma-4">Character Sheet</MudText>
 
 @if (Player is null)
 {
-    <MudCard Class="ma-4 pa-4">
-        <MudCardContent>
-            <MudProgressCircular Size="Size.Large" />
-            <MudText Class="mt-2">Loading character…</MudText>
-        </MudCardContent>
-    </MudCard>
+    <MudProgressCircular Indeterminate="true" Class="ma-4" />
 }
 else
 {
-    <MudCard Class="ma-4" Style="max-width: 520px;">
-        <MudCardContent>
-            <MudTextField @bind-Value="_name" Label="Character Name" />
-            <MudText Class="mt-2">Level: @Player.Level</MudText>
-            <MudText>XP: @Player.CurrentXP / @Player.XPToNextLevel</MudText>
-            <MudText>Gold: @Player.Gold</MudText>
+    <MudGrid Class="pa-2">
+        <MudItem xs="12" md="6">
+            <CharacterSummary Player="Player" />
+        </MudItem>
 
-            <MudStack Row="true" Spacing="2" Class="mt-3">
-                <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveName">Save Name</MudButton>
-                <MudButton Variant="Variant.Filled" OnClick="() => GainXp(5)">+5 XP</MudButton>
-                <MudButton Variant="Variant.Outlined" OnClick="() => GainGold(10)">+10 Gold</MudButton>
-            </MudStack>
-        </MudCardContent>
-    </MudCard>
+        <MudItem xs="12" md="6">
+            <MudCard Class="ma-4">
+                <MudCardHeader>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.h6">Identity</MudText>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudTextField @bind-Value="_name" Label="Character Name" Immediate="true" />
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveName">Save Name</MudButton>
+                </MudCardActions>
+            </MudCard>
+
+            @if (ShowDebugTools)
+            {
+                <MudCard Class="ma-4">
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Debug Tools</MudText>
+                            <MudText Typo="Typo.caption">Only present in Debug builds.</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardActions>
+                        <MudButton Variant="Variant.Filled" OnClick="() => GainXp(5)">+5 XP</MudButton>
+                        <MudButton Variant="Variant.Outlined" OnClick="() => GainGold(10)">+10 Gold</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            }
+        </MudItem>
+    </MudGrid>
 }
 
 @code {
+#if DEBUG
+    private const bool ShowDebugTools = true;
+#else
+    private const bool ShowDebugTools = false;
+#endif
+
     private LifeRPG.Data.Character? Player;
     private string _name = string.Empty;
 
@@ -42,14 +71,12 @@ else
     {
         await CharacterService.AddXPAsync(amount);
         Player = await CharacterService.GetOrCreateAsync();
-        _name = Player.Name;
     }
 
     private async Task GainGold(int amount)
     {
         await CharacterService.AddGoldAsync(amount);
         Player = await CharacterService.GetOrCreateAsync();
-        _name = Player.Name;
     }
 
     private async Task SaveName()
@@ -57,5 +84,6 @@ else
         await CharacterService.SetNameAsync(_name);
         Player = await CharacterService.GetOrCreateAsync();
         _name = Player.Name;
+        Snackbar.Add("Name saved.", Severity.Success);
     }
 }

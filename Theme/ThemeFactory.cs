@@ -7,6 +7,8 @@ namespace LifeRpg.Theme;
 /// </summary>
 public static class RpgTheme
 {
+    private static readonly string[] HeadingFont = { "Cinzel", "Georgia", "serif" };
+
     public static readonly MudTheme Instance = new()
     {
         // Light palette (day mode)
@@ -22,8 +24,10 @@ public static class RpgTheme
             Error             = "#D32F2F",
             AppbarBackground  = "#673AB7",
             AppbarText        = Colors.Shades.White,
-            Background        = "#FAFAFC",
-            Surface           = Colors.Shades.White
+            Background        = "#F3EAD7",   // Parchment
+            Surface           = "#FFFBF0",   // Scroll
+            DrawerBackground  = "#FBF3DF",
+            TextPrimary       = "#2B2118"    // Ink
         },
 
         // Dark palette (night mode)
@@ -44,9 +48,15 @@ public static class RpgTheme
 
         LayoutProperties = new LayoutProperties
         {
-            DefaultBorderRadius = "12px"
+            DefaultBorderRadius = "10px"
         },
 
-        
+        Typography = new Typography
+        {
+            H4 = new H4Typography { FontFamily = HeadingFont, FontWeight = "700" },
+            H5 = new H5Typography { FontFamily = HeadingFont, FontWeight = "700" },
+            H6 = new H6Typography { FontFamily = HeadingFont, FontWeight = "700" },
+            Button = new ButtonTypography { FontFamily = HeadingFont, FontWeight = "700" }
+        }
     };
 }

@@ -24,7 +24,12 @@ else
 
     @if (!_rewards.Any())
     {
-        <MudText Class="ma-4">No rewards yet. Create one to start spending your gold.</MudText>
+        <EmptyState Title="The treasury shop is bare"
+                    Message="Add a real-life reward to spend your hard-earned gold on."
+                    Icon="@Icons.Material.Filled.Storefront"
+                    IconColor="Color.Warning"
+                    ActionText="New Reward"
+                    OnAction="OpenCreateDialog" />
     }
     else
     {
