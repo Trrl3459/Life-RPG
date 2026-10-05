@@ -28,21 +28,22 @@ LifeRPG/
 │   ├── QuestService.cs       # Manages quest CRUD, completion, rewards, and Daily reset (depends on CharacterService)
 │   └── RewardService.cs      # Manages reward CRUD with local storage persistence
 ├── Pages/                     # Routable page components
-│   ├── Home.razor            # Landing page (`/home`)
+│   ├── Home.razor            # Landing page (`/home`) — still the Blazor template content, to be rewritten
 │   ├── Dashboard.razor       # Main hub: live character summary + today's incomplete Daily quests (default route `/`)
-│   ├── Character.razor       # Character sheet displaying stats
+│   ├── Character.razor       # Character sheet: summary card, rename, and Debug Tools card (`#if DEBUG` only)
 │   ├── Quests.razor          # Quest log: filter by type, complete, delete, create via dialog
 │   └── Rewards.razor         # Reward store: create, edit, delete, and purchase rewards with gold
 ├── Components/                # Reusable non-page UI (dialogs, etc.)
 │   ├── CreateQuestDialog.razor  # MudDialog + MudForm for creating a new quest
 │   ├── CreateRewardDialog.razor # MudDialog + MudForm for creating/editing a reward
-│   └── CharacterSummary.razor   # Extracted character stat card used on Dashboard
+│   ├── CharacterSummary.razor   # Character card (level badge, XP bar, gold/streak chips) used on Dashboard and Character page
+│   └── EmptyState.razor         # Reusable empty-state panel (icon, title, message, optional action button)
 ├── Layout/                    # Layout components
 │   ├── MainLayout.razor      # Primary app layout with MudLayout, drawer, app bar
 │   └── NavMenu.razor         # Navigation menu (legacy, unused — MainLayout's MudNavMenu is what actually renders)
 ├── Theme/                     # Custom theming
-│   ├── ThemeFactory.cs       # MudBlazor theme configuration
-│   └── RpgTheme.cs           # RPG-styled color palette
+│   └── ThemeFactory.cs       # Defines `RpgTheme`: parchment palette, Cinzel heading/button typography
+├── wwwroot/css/app.css       # RPG styling: gold-trimmed cards/dialogs, level badge, empty-state border
 ├── Program.cs                # Application entry point and service registration
 ├── App.razor                 # Root component with routing
 └── \_Imports.razor            # Global using statements
@@ -72,6 +73,8 @@ dotnet watch --launch-profile https
 ### Debugging
 
 The project is configured to run on `http://localhost:5017` (HTTP) and `https://localhost:7124` (HTTPS) in development mode.
+
+Hot reload cannot apply some edits (for example adding a static field, as in `ThemeFactory.cs`) and the page will crash with an "unhandled error" and a `hot_reload.c` assertion in the console. This is not an app bug — restart `dotnet watch` (Ctrl+R) and reload.
 
 ## Domain Concepts and Terminology
 
@@ -125,6 +128,9 @@ Models live in the `Data/` folder and are simple POCOs with properties. Use reco
 * Use `<MudSnackbar>` for non-blocking user feedback
 * Use `<MudDialog>` for modal interactions
 * Follow MudBlazor's parameter binding conventions (`@bind-Value` for two-way binding)
+* Use `<EmptyState>` (`Components/EmptyState.razor`) for any list or section with nothing to show, instead of plain text
+* Developer-only controls (e.g. the +XP/+Gold cheats on `Character.razor`) must sit behind `#if DEBUG` so they are absent from Release builds; expose the flag as a non-const property to avoid CS0162 warnings
+* Theme: the RPG look lives in `Theme/ThemeFactory.cs` and `wwwroot/css/app.css` (gold `--rpg-gold` trim, Cinzel headings). Reuse those instead of inline styles
 
 ### Async/Await
 
@@ -136,7 +142,7 @@ The project has nullable reference types enabled. Use `?` for nullable types and
 
 ## Current Development Status
 
-### Completed (Days 1-14 of 15-Day Plan)
+### Completed (Days 1-15 of 15-Day Plan)
 
 * Project scaffolding and MudBlazor setup
 * MainLayout with MudAppBar and MudDrawer navigation
@@ -155,10 +161,17 @@ The project has nullable reference types enabled. Use `?` for nullable types and
 * Daily quest reset — `Quest.LastCompletedUtc` drives auto-reset of completed Daily quests on a new day (`QuestService.GetQuestsAsync`)
 * Streak tracking — `Character.StreakDays`/`LastActivityUtc` increment on consecutive-day quest completion and expire after a missed day (`CharacterService.RegisterDailyActivityAsync`)
 
-### Not Yet Started (Day 15)
+* Day 15 — theme refinement: game-like RPG theme (parchment palette, Cinzel headings, gold-trimmed cards), `EmptyState` component on Dashboard/Quests/Rewards, Dashboard "All dailies complete!" state, redesigned Character page (cheats behind `#if DEBUG`)
+* Day 15 — code review: removed unused `Counter.razor` and `RpgColors`, fixed CS0162 warning, `QuestService` now uses a `_loaded` flag like `RewardService`. Release build: 0 warnings, 0 errors
 
-* Theme refinement and polish
-* Code review and refactoring pass
+### Known Follow-ups (post Day 15)
+
+* Daily reset and streaks compare **UTC** dates, so they roll over at UTC midnight rather than the user's local midnight
+* `Home.razor` is still the Blazor template (fake links, "successfully running" snackbar)
+* Dead code: `Layout/NavMenu.razor` (+ CSS), unused `Character` stat fields (`AttackLevel`, `WillpowerLevel`, `VitalityLevel`, `StatLevel`), no-op `QuestService.UpdateQuestAsync`
+* Drawer nav links sometimes do not render until a re-render (e.g. opening a dialog) on a fresh page load
+* The disabled "Completed" button has low contrast on the parchment background
+* The "Login" app bar button is a placeholder kept for a possible future login system
 
 ## Development Workflow
 
@@ -193,7 +206,8 @@ To verify features are working:
 * Check browser console for errors or warnings
 * Verify MudSnackbar notifications appear for user actions
 * Test that XP accumulation triggers level-ups correctly
-* Confirm gold deductions work when purchasing rewards (once implemented)
+* Confirm gold deductions work when purchasing rewards, and that the Purchase button is disabled when gold is insufficient
+* Build with `dotnet build -c Release` to confirm there are no warnings and the Debug Tools card is compiled out
 
 ## Git Workflow
 

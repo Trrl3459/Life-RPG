@@ -12,10 +12,10 @@ Welcome to the LifeRPG project. This is a gamified personal habit tracker where 
 
 ## **🗺️ Current Progress (The 15-Day Plan)**
 
-We are currently at **Day 14** of the development timeline.
+We have completed **Day 15**, the final day of the development timeline.
 
-* **\[✓\] Days 1-14 (Completed):** Scaffolding, MainLayout (AppBar/Drawer), Character & Quest models, Singleton Services (CharacterService, QuestService, RewardService), XP/Leveling carry-over logic, Local Storage persistence, Snackbar feedback, CreateQuestDialog with validation, Quest display/filtering/deletion, Dashboard hub (CharacterSummary component \+ today's quests), Reward Store (create/edit/delete/purchase real-life rewards), Daily quest auto-reset, and streak tracking.  
-* **\[ \] Day 15 (Pending):** Custom theming refinement and a final code-review/polish pass.  
+* **\[✓\] Days 1-15 (Completed):** Scaffolding, MainLayout (AppBar/Drawer), Character & Quest models, Singleton Services (CharacterService, QuestService, RewardService), XP/Leveling carry-over logic, Local Storage persistence, Snackbar feedback, CreateQuestDialog with validation, Quest display/filtering/deletion, Dashboard hub (CharacterSummary component \+ today's quests), Reward Store (create/edit/delete/purchase real-life rewards), Daily quest auto-reset, streak tracking, a game-like RPG theme (parchment palette, Cinzel headings, gold-trimmed cards), a reusable EmptyState component, a redesigned Character page (cheat buttons behind `#if DEBUG`), and a final code-review pass.  
+* **\[ \] Known Follow-ups (Pending):** Daily reset/streaks use UTC dates rather than local time; `Home.razor` is still Blazor template content; dead code remains (`NavMenu.razor`, unused `Character` stat fields, no-op `UpdateQuestAsync`); drawer links occasionally render late on a fresh load; disabled "Completed" button has low contrast.  
 * **\[ \] Post-Launch (Pending):** AI feature exploration (e.g., generative quests, personalized snarky feedback upon failing habits).
 
 ## **🏗️ Architecture & State Management**
@@ -32,7 +32,9 @@ Follow this exact pattern for state mutation:
 
 * **Async/Await:** Any service method touching local storage or external APIs must be suffixed with Async and properly awaited. Do not ever use .Result or .Wait().  
 * **Null Safety:** Nullable reference types are enabled (?). Handle nulls gracefully; the compiler will complain if you don't.  
-* **Components:** Wrap everything in MudBlazor. Use \<MudGrid\>, \<MudPaper\>, and \<MudCard\> for layout. Give users non-blocking feedback using \<MudSnackbar\>.
+* **Components:** Wrap everything in MudBlazor. Use \<MudGrid\>, \<MudPaper\>, and \<MudCard\> for layout. Give users non-blocking feedback using \<MudSnackbar\>. Use the shared `EmptyState` component for empty lists, and put developer-only controls behind `#if DEBUG`.  
+* **Theme:** The RPG look lives in `Theme/ThemeFactory.cs` (class `RpgTheme`) and `wwwroot/css/app.css`. Reuse it rather than adding inline styles.  
+* **Hot reload:** Some edits (e.g. adding a static field) crash hot reload with a `hot_reload.c` assertion. Restart `dotnet watch` instead of debugging the app.
 
 ## **🤖 Gemini Directives (How I Operate)**
 
