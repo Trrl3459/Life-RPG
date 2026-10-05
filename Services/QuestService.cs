@@ -9,6 +9,7 @@ public class QuestService
     private readonly ILocalStorageService _localStorage;
     private readonly CharacterService _characterService;
     private List<Quest> _quests = new();
+    private bool _loaded;
 
     public QuestService(ILocalStorageService localStorage, CharacterService characterService)
     {
@@ -18,8 +19,11 @@ public class QuestService
 
     public async Task<List<Quest>> GetQuestsAsync()
     {
-        if (_quests.Count == 0)
+        if (!_loaded)
+        {
             _quests = await _localStorage.GetItemAsync<List<Quest>>(StorageKey) ?? new();
+            _loaded = true;
+        }
 
         await ResetDailyQuestsIfNeededAsync();
         return _quests;

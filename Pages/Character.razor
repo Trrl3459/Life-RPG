@@ -53,9 +53,9 @@ else
 
 @code {
 #if DEBUG
-    private const bool ShowDebugTools = true;
+    private static bool ShowDebugTools => true;
 #else
-    private const bool ShowDebugTools = false;
+    private static bool ShowDebugTools => false;
 #endif
 
     private LifeRPG.Data.Character? Player;
